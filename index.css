@@ -1,0 +1,14 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+nav {
+    background-color: lightblue;
+}
+
+.divImgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px;
+}
