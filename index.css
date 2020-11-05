@@ -2,9 +2,6 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-nav {
-    background-color: lightblue;
-}
 
 .divImgContainer {
     display: flex;
@@ -12,3 +9,69 @@ nav {
     align-items: center;
     margin: 100px;
 }
+
+.header,
+.footer {
+  background-color: orangered;
+  color: white;
+  padding: 15px;
+}
+
+.column {
+    float: left;
+    padding: 15px;
+  }
+  
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .menu {
+    width: 25%;
+  }
+  
+  .content {
+    width: 75%;
+  }
+  
+  .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu li {
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: cyan;
+    color:black;
+  }
+  
+  .menu li:hover {
+    background-color: #0099cc;
+  }
+
+  .a {
+    text-align: left;
+  }
+  
+  a:link {
+    color: purple;
+    text-decoration: none;
+    }
+
+ a:visited {
+        color: pink;
+      }
+
+    a:hover {
+        color: purple;
+        text-decoration: underline;
+      }
+
+      a:active {
+        color: blue;
+      }
+      
