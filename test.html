@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<script>
+    function getCorrectAlert(hour, minutes, userInput) {
+        var message;
+
+        var str1 = "Good morning, ";
+        var str2 = "Good afternoon, ";
+        var str3 = "Good evening, ";
+        if (hour >= 5 && (hour <= 11 && minutes <= 59)) {
+            message = str1.concat(userInput,'!  Thank you for visiting my resume website.');
+        } else if (hour >= 12 && (hour <= 17 && minutes <= 59)) {
+            message = str2.concat(userInput,'! Thank you for visiting my resume website.');
+        } else {
+            message = str3.concat(userInput,'! Thank you for visiting my resume website.');
+        }
+        return message;
+    }
+
+    var message = "What is your name?";
+
+    //debugger;
+
+    var userInput = prompt(message)
+
+    var date = new Date();
+    var hour = date.getHours();
+    var minutes = date.getMinutes();
+
+    var returnMessage = getCorrectAlert(hour, minutes, userInput);
+    alert(returnMessage);
+    console.log(returnMessage);
+
+
+</script>
+
+<head>
+    <title>Ren's Resume </title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<body>
+    <section>
+    </section>
+    <nav class="navbar navbar-expand-md">
+        <a href="#" class="navbar-brand"></a>
+        <ul class="navbar-nav">
+            <li class="navbar-item"> <a href="./index.html" class="nav-link">Home</a>
+            <li class="navbar-item"> <a href="./about.html" class="nav-link">About</a>
+            <li class="navbar-item"> <a href="./portfolio.html" class="nav-link">Portfolio</a>
+            <li class="navbar-item"> <a href="./contact.html" class="nav-link">Contact</a>
+            <li class="navbar-item"> <a href="./test.html" class="nav-link">JavaScript</a>
+                <a href="./resume.docx" download Resume></a>
+        </ul>
+    </nav>
+
+</html>
