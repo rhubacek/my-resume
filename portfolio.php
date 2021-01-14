@@ -53,9 +53,9 @@
     </section>
 
     <?php
-      $skills = array ("familiarity with graphic design as well as overall web design", "proficiency in HTML.", "proficiency in JavaScript.");
-      echo '<h4>My skills include:</h2><ul>'
-      for each ($skills a $c) {
+      $skills = array("familiarity with graphic design as well as overall web design", "proficiency in HTML.", "proficiency in JavaScript.");
+      echo '<h4>My skills include:</h4><ul>';
+      foreach ($skills as $c) {
         echo '<li>' . $c . '</li>';
       }
       echo '</ul>';
