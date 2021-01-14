@@ -18,6 +18,7 @@
                 <li class="navbar-item"> <a href="./about.html" class="nav-link">About</a>
                 <li class="navbar-item"> <a href="./portfolio.html" class="nav-link">Portfolio</a>
                 <li class="navbar-item"> <a href="./contact.html" class="nav-link">Contact</a>
+                <li class="navbar-item"> <a href="./test.html" class="nav-link">JavaScript</a>
                <a href="./resume.docx"download Resume></a>
                </ul>
            </nav>
@@ -50,4 +51,13 @@
         </div>
       </div>
     </section>
+
+    <?php
+      $skills = array ("familiarity with graphic design as well as overall web design", "proficiency in HTML.", "proficiency in JavaScript.");
+      echo '<h4>My skills include:</h2><ul>'
+      for each ($skills a $c) {
+        echo '<li>' . $c . '</li>';
+      }
+      echo '</ul>';
+      ?>
 </html>
