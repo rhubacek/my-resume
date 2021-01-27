@@ -15,6 +15,7 @@
             <a href="#" class="navbar-brand"></a>
                <ul class="navbar-nav">
                 <li class="navbar-item"> <a href="./index.php" class="nav-link">Home</a>
+                <li class="navbar-item"> <a href="./contactform.php" class="nav-link">Contact Form</a>
                 <li class="navbar-item"> <a href="./about.php" class="nav-link">About</a>
                 <li class="navbar-item"> <a href="./portfolio.php" class="nav-link">Portfolio</a>
                 <li class="navbar-item"> <a href="./contact.php" class="nav-link">Contact</a>
@@ -51,7 +52,7 @@
         </div>
       </div>
     </section>
-
+  <section>
     <?php
       $skills = array("familiarity with graphic design as well as overall web design", "proficiency in HTML.", "proficiency in JavaScript.");
       echo '<h4>My skills include:</h4><ul>';
@@ -60,4 +61,5 @@
       }
       echo '</ul>';
       ?>
+  </section>
 </html>
