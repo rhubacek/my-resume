@@ -21,6 +21,7 @@
                     <li class="navbar-item"> <a href="./portfolio.php" class="nav-link">Portfolio</a>
                     <li class="navbar-item"> <a href="./contact.php" class="nav-link">Contact</a>
                     <li class="navbar-item"> <a href="./test.php" class="nav-link">JavaScript</a>
+                    <li class="navbar-item"> <a href="./data.php" class="nav-link">Data</a>
                    <a href="./resume.docx"download Resume></a>
                    </ul>
                </nav>
@@ -100,9 +101,10 @@ return$data;
 }
 ?>
 
-<h2>PHP Form Validation Example</h2>
+
+<h2>Information Form</h2>
 <p><span class="error">* required field</span></p>
-<form method="post"action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<form method="post"action="insert.php">
 Name: <input type="text" name="name" value="<?php echo $name;?>">
 <span class="error">* <?php echo $nameErr;?></span>
 <br><br>
@@ -118,9 +120,9 @@ Phone: <input type="text" name="phone" value="<?php echo $phone;?>">
 Comment: <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
 <br><br>
 Gender:
-<input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
-<input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
-<input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other
+<input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="f">Female
+<input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="m">Male
+<input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="o">Other
 <span class="error">* <?php echo $genderErr;?></span>
 <br><br>
 <input type="submit" name="submit" value="Submit">
@@ -128,29 +130,41 @@ Gender:
 </form>
 
 
+<?php 
+    $servername = "mysql.khubacek.slccwebdev.com";
+    $username = "katherine_100";
+    $password = "S1gnm31n!";
+    $dbname = "katherine_db_100";
 
-<?php
-echo "<h2>Your Input:</h2>";
-echo $name;
-echo "<br>";
-echo $email;
-echo "<br>";
-echo $website;
-echo "<br>";
-echo $phone;
-echo "<br>";
-echo $comment;
-echo "<br>";
-echo $gender;
-echo "<br>";
-if (isset($_POST["submit"])){
-$to = " $email ";
-$email_body = "You have received a new message from the $name.\n"."They are a $gender.\n"."Their number is $phone.\n"."Their website is $website.\n"."They comment:\n $comment.";
-//mail(param1,param2,param3,param4...)
-mail($to, " Website Request ", $email_body);
-echo "Thank you for contacting us. We will be in touch with you very soon.";
-}
-?>
+    try {
+        $conn = new PDO("myslq:host=$servername; dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("INSERT INTO Persons (Name, Email, Website, Phone, Comment, Gender)
+        VALUES (:Name, :Email, :Website, :Phone, :Comment, :Gender)");
 
+        $stmt->bindParam(':Name', $name);
+        $stmt->bindParam(':Email', $email);
+        $stmt->bindParam(':Website', $website);
+        $stmt->bindParam(':Phone', $phone);
+        $stmt->bindParam(':Comment', $comment);
+        $stmt->bindParam(':Gender', $gender);
+
+        $name = $_POST['Name'];
+        $email = $_POST['Email'];
+        $website = $_POST['Website'];
+        $phone = $_POST['Phone'];
+        $comment = $_POST['Comment'];
+        $gender = $_POST['Gender'];
+        $stmt->execute();
+
+        Echo "New record created successfully!";
+    }
+
+    catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
+    
+    ?>
 </body>
 </html>

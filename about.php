@@ -20,6 +20,7 @@
                 <li class="navbar-item"> <a href="./portfolio.php" class="nav-link">Portfolio</a>
                 <li class="navbar-item"> <a href="./contact.php" class="nav-link">Contact</a>
                 <li class="navbar-item"> <a href="./test.php" class="nav-link">JavaScript</a>
+                <li class="navbar-item"> <a href="./data.php" class="nav-link">Data</a>
                <a href="./resume.docx"download Resume></a>
                </ul>
            </nav>
@@ -40,7 +41,7 @@
 						<hr class="my-4" />
 
 						<p class="font-weight-light mx-5">
-							I am an 18 year old high school graduate. I have experience in website development and graphic design. Please consider me for your next job.
+							I am an 19 year old high school graduate. I have experience in website development and graphic design. Please consider me for your next job.
 						</p>
 						<a class="btn btn-primary btn-lg mt-5" role="button" href="#contact">Contact Me</a>
 					</div>

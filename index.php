@@ -26,6 +26,7 @@
             <li class="navbar-item"> <a href="./portfolio.php" class="nav-link">Portfolio</a>
             <li class="navbar-item"> <a href="./contact.php" class="nav-link">Contact</a>
             <li class="navbar-item"> <a href="./test.php" class="nav-link">JavaScript</a>
+            <li class="navbar-item"> <a href="./data.php" class="nav-link">Data</a>
            <a href="./resume.docx"download Resume></a>
            </ul>
        </nav>
@@ -44,7 +45,7 @@
             <div class="column content">
 
            <h3 <b class="hsubs">Personal Bio</b></h3>
-           <p>I am 18 years old, and I graduated high school only a few months ago.</p>
+           <p>I am 19 years old, and I graduated high school only a few months ago.</p>
        </section>
        <div class="a">
        <section>

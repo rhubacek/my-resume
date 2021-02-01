@@ -20,6 +20,7 @@
                 <li class="navbar-item"> <a href="./portfolio.php" class="nav-link">Portfolio</a>
                 <li class="navbar-item"> <a href="./contact.php" class="nav-link">Contact</a>
                 <li class="navbar-item"> <a href="./test.php" class="nav-link">JavaScript</a>
+                <li class="navbar-item"> <a href="./data.php" class="nav-link">Data</a>
                <a href="./resume.docx"download Resume></a>
                </ul>
            </nav>
