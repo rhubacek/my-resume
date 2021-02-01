@@ -41,19 +41,29 @@
         border: solid 1px black;
     }
 </style>
+
 <?php 
-    $servername = "mysql.khubacek.slccwebdev.com/";
+    function debug_to_console($data) {
+        $output = $data;
+        if (is_array($output))
+            $output = implode(',', $output);
+    
+        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+    }
+    
+    $servername = "mysql.khubacek.slccwebdev.com";
     $username = "katherine_100";
     $password = "S1gnm31n!";
     $dbname = "katherine_db_100";
-
+    
     try {
-        $conn = new PDO("mysql:host=$servername; dbname=$dbname", $username, $password);
+
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT id, customername, email, website, phone, comment, gender FROM persons");
+        $stmt = $conn->prepare("SELECT ID, customername, Email, Website, Phone, Comment, Gender FROM Persons");
         $stmt->execute();
 
-        echo "<table><tr><th>ID</th><th>Name</th><th>Email</th><th>Website</th><th>Phone</th><th>Comment</th><th>Gender</th></tr>";
+        echo "<table><tr><th>ID</th><th>customername</th><th>Email</th><th>Website</th><th>Phone</th><th>Comment</th><th>Gender</th></tr>";
         while ($row = $stmt ->fetch(PDO::FETCH_ASSOC)) { ?>
         <tr>
                 <td><?php echo $row [ID]; ?></td>
@@ -66,10 +76,14 @@
         </tr>
         <?php }
         echo "</table>";
-    }
-    catch (PDOException $e) {
+
+    } catch (Exception $e){
+        echo "go away";
+    } /*catch (PDOException $e) {
         echo "Error: " . $e/>getMessage();
-    }
+    }*/
+    
+    
     $conn = null;
     ?>
 </body>
