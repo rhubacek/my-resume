@@ -36,61 +36,62 @@
 <?php
 // define variables and set to empty values
 $nameErr = $emailErr = $genderErr = $websiteErr = $phoneErr = "";
-$name = $email = $gender = $comment = $website = $phone = "";
+$customername = $email = $gender = $comment = $website = $phone = "";
 $to = $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-if (empty($_POST["name"])) {
-$nameErr = "Name is required";
-} else {
-$name = test_input($_POST["name"]);
-// check if name only contains letters and whitespace
-if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-$nameErr = "Only letters and white space allowed";
-}
-}
- 
-if (empty($_POST["email"])) {
-$emailErr = "Email is required";
-} else {
-$email = test_input($_POST["email"]);
-// check if e-mail address is well-formed
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-$emailErr = "Invalid email format";
-}
-}
 
-if (empty($_POST["phone"])) {
-$phoneErr = "Phone is required";
-} else {
-$phone = test_input($_POST["phone"]);
-// check if e-mail address is well-formed
-if (!preg_match("/^[0-9]*$/",$phone,)) {
-$phoneErr = "Invalid phone format";
-}
-}
- 
-if (empty($_POST["website"])) {
-$website = "";
-} else {
-$website = test_input($_POST["website"]);
-// check if URL address syntax is valid (this regular expression also allows dashes in the URL)
-if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
-$websiteErr = "Invalid URL";
-}
-}
+    if (empty($_POST["customername"])) {
+    $nameErr = "Customer Name is required";
+    } else {
+    $customername = test_input($_POST["customername"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$customername)) {
+    $nameErr = "Only letters and white space allowed";
+    }
+    }
+    
+    if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+    } else {
+    $email = test_input($_POST["email"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $emailErr = "Invalid email format";
+    }
+    }
 
-if (empty($_POST["comment"])) {
-$comment = "";
-} else {
-$comment = test_input($_POST["comment"]);
-}
+    if (empty($_POST["phone"])) {
+    $phoneErr = "Phone is required";
+    } else {
+    $phone = test_input($_POST["phone"]);
+    // check if e-mail address is well-formed
+    if (!preg_match("/^[0-9]*$/",$phone,)) {
+    $phoneErr = "Invalid phone format";
+    }
+    }
+    
+    if (empty($_POST["website"])) {
+    $website = "";
+    } else {
+    $website = test_input($_POST["website"]);
+    // check if URL address syntax is valid (this regular expression also allows dashes in the URL)
+    if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
+    $websiteErr = "Invalid URL";
+    }
+    }
 
-if (empty($_POST["gender"])) {
-$genderErr = "Gender is required";
-} else {
-$gender = test_input($_POST["gender"]);
-}
+    if (empty($_POST["comment"])) {
+    $comment = "";
+    } else {
+    $comment = test_input($_POST["comment"]);
+    }
+
+    if (empty($_POST["gender"])) {
+    $genderErr = "Gender is required";
+    } else {
+    $gender = test_input($_POST["gender"]);
+    }
 }
 
 function test_input($data) {
@@ -104,8 +105,8 @@ return$data;
 
 <h2>Information Form</h2>
 <p><span class="error">* required field</span></p>
-<form method="post"action="insert.php">
-Name: <input type="text" name="name" value="<?php echo $name;?>">
+<form method="post" action="contactform.php">
+Name: <input type="text" name="customername" value="<?php echo $customername;?>">
 <span class="error">* <?php echo $nameErr;?></span>
 <br><br>
 E-mail: <input type="text" name="email" value="<?php echo $email;?>">
@@ -131,31 +132,43 @@ Gender:
 
 
 <?php 
+    function debug_to_console($data) {
+        $output = $data;
+        if (is_array($output))
+            $output = implode(',', $output);
+    
+        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+    }
+    
     $servername = "mysql.khubacek.slccwebdev.com";
     $username = "katherine_100";
     $password = "S1gnm31n!";
     $dbname = "katherine_db_100";
 
     try {
-        $conn = new PDO("myslq:host=$servername; dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:host=$servername; dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("INSERT INTO Persons (Name, Email, Website, Phone, Comment, Gender)
-        VALUES (:Name, :Email, :Website, :Phone, :Comment, :Gender)");
+        $stmt = $conn->prepare("INSERT INTO Persons (customername, Email, Website, Phone, Comment, Gender)
+        VALUES (:customername, :Email, :Website, :Phone, :Comment, :Gender)");
 
-        $stmt->bindParam(':Name', $name);
+        $customername = $_POST['customername'];
+        $email = $_POST['email'];
+        $website = $_POST['website'];
+        $phone = $_POST['phone'];
+        $comment = $_POST['comment'];
+        $gender = $_POST['gender'];
+
+        $stmt->bindParam(':customername', $customername);
         $stmt->bindParam(':Email', $email);
         $stmt->bindParam(':Website', $website);
         $stmt->bindParam(':Phone', $phone);
         $stmt->bindParam(':Comment', $comment);
         $stmt->bindParam(':Gender', $gender);
 
-        $name = $_POST['Name'];
-        $email = $_POST['Email'];
-        $website = $_POST['Website'];
-        $phone = $_POST['Phone'];
-        $comment = $_POST['Comment'];
-        $gender = $_POST['Gender'];
+
         $stmt->execute();
+
+        debug_to_console($customername);
 
         Echo "New record created successfully!";
     }

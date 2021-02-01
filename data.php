@@ -48,21 +48,21 @@
     $dbname = "katherine_db_100";
 
     try {
-        $conn = new PDO("myslq:host=$servername; dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:host=$servername; dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT id, Name, Email, Website, Phone, Comment, Gender FROM persons");
+        $stmt = $conn->prepare("SELECT id, customername, email, website, phone, comment, gender FROM persons");
         $stmt->execute();
 
         echo "<table><tr><th>ID</th><th>Name</th><th>Email</th><th>Website</th><th>Phone</th><th>Comment</th><th>Gender</th></tr>";
         while ($row = $stmt ->fetch(PDO::FETCH_ASSOC)) { ?>
         <tr>
-                <td><?php echo $row [id]; ?></td>
-                <td><?php echo $row [name]; ?></td>
-                <td><?php echo $row [email]; ?></td>
-                <td><?php echo $row [website]; ?></td>
-                <td><?php echo $row [phone]; ?></td>
-                <td><?php echo $row [comment]; ?></td>
-                <td><?php echo $row [gender]; ?></td>
+                <td><?php echo $row [ID]; ?></td>
+                <td><?php echo $row [customername]; ?></td>
+                <td><?php echo $row [Email]; ?></td>
+                <td><?php echo $row [Website]; ?></td>
+                <td><?php echo $row [Phone]; ?></td>
+                <td><?php echo $row [Comment]; ?></td>
+                <td><?php echo $row [Gender]; ?></td>
         </tr>
         <?php }
         echo "</table>";
