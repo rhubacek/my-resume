@@ -168,7 +168,6 @@ Gender:
 
         $stmt->execute();
 
-        debug_to_console($customername);
 
         Echo "New record created successfully!";
     }
